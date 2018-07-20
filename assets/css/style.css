@@ -5,26 +5,7 @@
 
 }
 
-/*navbar*/
-
-#nav-bar-nav {
-	flex-direction: row;
-}
-
-#mynavbar {
-	flex-direction: column;
-}
-
-#nav-bar-nav > li {
-	padding: 20px;
-	margin-right: 10px;
-}
-
-.nav-item > a {
-	font-family: 'PT Sans', sans-serif;
-}
-
-/*header*/
+/*landing-page*/
 
 #header {
 	background-image: url(../images/bg.gif);
@@ -46,7 +27,7 @@
 .css-typing p {
   border-right: .15em solid orange;
   font-family: 'Caveat', cursive;
-  font-size: 2.5rem;
+  font-size: 2rem;
   white-space: nowrap;
   overflow: hidden;
   line-height: 1;
@@ -73,7 +54,7 @@
 }
 
 .css-typing p:nth-child(3) {
-  width: 4.5em;
+  width: 9.5em;
   opacity: 0;
   -webkit-animation: type2 2s steps(40, end);
   animation: type2 2s steps(40, end);
@@ -84,45 +65,23 @@
 }
 
 .css-typing p:nth-child(4) {
-  width: 4.7em;
+  width: 7.7em;
   opacity: 0;
   -webkit-animation: type2 2s steps(40, end);
   animation: type2 2s steps(40, end);
-  -webkit-animation-delay: 4.5s;
-  animation-delay: 4.5s;
+  -webkit-animation-delay: 6.5s;
+  animation-delay: 6.5s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
 
 .css-typing p:nth-child(5) {
-  width: 4.5em;
-  opacity: 0;
-  -webkit-animation: type2 2s steps(40, end);
-  animation: type2 2s steps(40, end);
-  -webkit-animation-delay: 8s;
-  animation-delay: 8s;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
-
-.css-typing p:nth-child(6) {
-  width: 4em;
-  opacity: 0;
-  -webkit-animation: type2 2s steps(40, end);
-  animation: type2 2s steps(40, end);
-  -webkit-animation-delay: 10s;
-  animation-delay: 10s;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
-
-.css-typing p:nth-child(7) {
   width: 5.5em;
   opacity: 0;
   -webkit-animation: type3 3s steps(40, end), blink .5s step-end infinite alternate;
   animation: type3 3s steps(40, end), blink .5s step-end infinite alternate;
-  -webkit-animation-delay: 12s;
-  animation-delay: 12s;
+  -webkit-animation-delay: 9s;
+  animation-delay: 9s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
@@ -230,13 +189,19 @@
 /*Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
 
+	#nav-bar-nav {
+	flex-direction: row;
+	margin-top: 15%;
+}	
+
 
 	#header {
-	background-color: orange;
+	background-image: url(../images/mobile.gif);
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
 	background-position: center;
+	width: 110vw;
+	height: 125vh;	
 
 }	
   .css-typing p {
@@ -246,17 +211,51 @@
   white-space: nowrap;
   overflow: hidden;
   line-height: 1;
-  color: white;
+  color: #443D39;
+}
+	
+	.typewriter {
+	top: 50%;
+	left: 50%;
+	transform: translate(5%, 90%);
 }
 
 }
 
-
-/*Medium devices (tablets, less than 992px)*/
-@media (max-width: 991.98px) {
+/*Small devices (landscape phones, less than 768px)*/
+@media (min-width: 576px) and (max-width: 767.98px) {
 
 	#header {
-	background-size: auto;
+	background-image: url(../images/mobile.gif);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+}
+
+	.typewriter {
+	top: 50%;
+	left: 50%;
+	transform: translate(20%, 70%);
+}
+
+	.css-typing p {
+  border-right: .15em solid orange;
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: 1;
+  color: #443D39;
+
+}
+
+}
+
+/*Medium devices (tablets, less than 992px)*/
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+	#header {
 	background-repeat: no-repeat;
 	background-attachment: local;
 	background-position: center;
@@ -267,9 +266,17 @@
   .css-typing p {
   border-right: .15em solid orange;
   font-family: 'Caveat', cursive;
-  font-size: 1.5rem;
+  font-size: 1rem;
   white-space: nowrap;
   overflow: hidden;
   line-height: 1;
   color: #443D39;
+}
+
+.typewriter {
+	top: 50%;
+	left: 50%;
+	transform: translate(15%, 40%);
+}
+
 }
