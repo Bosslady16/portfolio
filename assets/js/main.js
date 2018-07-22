@@ -140,7 +140,6 @@ ml.timelines["ml11"] = anime.timeline({loop: true})
     delay: 1000
   });
 
-
 (function($) {
 "use strict";
     // Subpages resize
