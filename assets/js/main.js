@@ -1,42 +1,146 @@
 
 // /Title Block script
-ml.timelines["ml5"] = anime.timeline({loop: false})
+var ml4 = {};
+ml4.opacityIn = [0,1];
+ml4.scaleIn = [0.2, 1];
+ml4.scaleOut = 3;
+ml4.durationIn = 1000;
+ml4.durationOut = 800;
+ml4.delay = 500;
+ml.timelines["ml4"] = anime.timeline({loop: true})
   .add({
-    targets: '.ml5 .line',
-    opacity: [0.5,1],
-    scaleX: [0, 1],
-    easing: "easeInOutExpo",
-    duration: 700
+    targets: '.ml4 .letters-1',
+    opacity: ml4.opacityIn,
+    scale: ml4.scaleIn,
+    duration: ml4.durationIn
   }).add({
-    targets: '.ml5 .line',
-    duration: 600,
+    targets: '.ml4 .letters-1',
+    opacity: 0,
+    scale: ml4.scaleOut,
+    duration: ml4.durationOut,
+    easing: "easeInExpo",
+    delay: ml4.delay
+  }).add({
+    targets: '.ml4 .letters-2',
+    opacity: ml4.opacityIn,
+    scale: ml4.scaleIn,
+    duration: ml4.durationIn
+  }).add({
+    targets: '.ml4 .letters-2',
+    opacity: 0,
+    scale: ml4.scaleOut,
+    duration: ml4.durationOut,
+    easing: "easeInExpo",
+    delay: ml4.delay
+  }).add({
+    targets: '.ml4 .letters-3',
+    opacity: ml4.opacityIn,
+    scale: ml4.scaleIn,
+    duration: ml4.durationIn
+  }).add({
+    targets: '.ml4 .letters-3',
+    opacity: 0,
+    scale: ml4.scaleOut,
+    duration: ml4.durationOut,
+    easing: "easeInExpo",
+    delay: ml4.delay
+  }).add({
+    targets: '.ml4',
+    opacity: 0,
+    duration: 500,
+    delay: 700
+  });
+
+
+// Wrap every letter in a span
+$('.ml1 .letters').each(function(){
+  $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+});
+ml.timelines["ml1"] = anime.timeline({loop: true})
+  .add({
+    targets: '.ml1 .letter',
+    scale: [0.3,1],
+    opacity: [0,1],
+    translateZ: 0,
     easing: "easeOutExpo",
-    translateY: function(e, i, l) {
-      var offset = -0.625 + 0.625*2*i;
-      return offset + "em";
+    duration: 600,
+    delay: function(el, i) {
+      return 70 * (i+1)
     }
   }).add({
-    targets: '.ml5 .letters-left',
-    opacity: [0,1],
-    translateX: ["0.5em", 0],
-    // easing: "easeOutExpo",
-    // duration: 600,
-    // offset: '-=300'
+    targets: '.ml1 .line',
+    scaleX: [0,1],
+    opacity: [0.5,1],
+    easing: "easeOutExpo",
+    duration: 700,
+    offset: '-=875',
+    delay: function(el, i, l) {
+      return 80 * (l - i);
+    }
   }).add({
-    targets: '.ml5 .letters-right',
+    targets: '.ml1',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });   
+
+// Wrap every letter in a span
+$('.ml10 .letters').each(function(){
+  $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+});
+ml.timelines["ml10"] = anime.timeline({loop: true})
+  .add({
+    targets: '.ml10 .letter',
+    rotateY: [-90, 0],
+    duration: 1300,
+    delay: function(el, i) {
+      return 45 * i;
+    }
+  }).add({
+    targets: '.ml10',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+
+  // Wrap every letter in a span
+$('.ml11 .letters').each(function(){
+  $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+});
+ml.timelines["ml11"] = anime.timeline({loop: true})
+  .add({
+    targets: '.ml11 .line',
+    scaleY: [0,1],
+    opacity: [0.5,1],
+    easing: "easeOutExpo",
+    duration: 700
+  })
+  .add({
+    targets: '.ml11 .line',
+    translateX: [0,$(".ml11 .letters").width()],
+    easing: "easeOutExpo",
+    duration: 700,
+    delay: 100
+  }).add({
+    targets: '.ml11 .letter',
     opacity: [0,1],
-    translateX: ["-0.5em", 0],
     easing: "easeOutExpo",
     duration: 600,
-    offset: '-=600'
+    offset: '-=775',
+    delay: function(el, i) {
+      return 34 * (i+1)
+    }
   }).add({
-    targets: '.ml5',
+    targets: '.ml11',
     opacity: 0,
-    // duration: 1000,
+    duration: 1000,
     easing: "easeOutExpo",
-    delay: 10000000
+    delay: 1000
   });
-  
+
+
 (function($) {
 "use strict";
     // Subpages resize
@@ -45,37 +149,6 @@ ml.timelines["ml5"] = anime.timeline({loop: false})
         $(".subpages").height(subpagesHeight + 50);
     }
     
-    // Portfolio subpage filters
-    function portfolio_init() {
-        var portfolio_grid = $('#portfolio_grid'),
-            portfolio_filter = $('#portfolio_filters');
-            
-        if (portfolio_grid) {
-
-            portfolio_grid.shuffle({
-                speed: 450,
-                itemSelector: 'figure'
-            });
-
-            $('.site-main-menu').on("click", "a", function (e) {
-                portfolio_grid.shuffle('update');
-            });
-
-
-            portfolio_filter.on("click", ".filter", function (e) {
-                portfolio_grid.shuffle('update');
-                e.preventDefault();
-                $('#portfolio_filters .filter').parent().removeClass('active');
-                $(this).parent().addClass('active');
-                portfolio_grid.shuffle('shuffle', $(this).attr('data-group') );
-                setTimeout(function(){
-                    subpages_resize();
-                }, 500);
-            });
-
-        }
-    }
-    // /Portfolio subpage filters
 
     // Contact form validator
     $(function () {
@@ -153,21 +226,7 @@ ml.timelines["ml5"] = anime.timeline({loop: false})
     // On Document Load
     $(document)
     .on('ready', function() {
-        // Initialize Portfolio grid
-        var $portfolio_container = $(".portfolio_grid");
 
-        $portfolio_container.imagesLoaded(function () {
-            portfolio_init(this);
-        });
-
-        // Portfolio hover effect init
-        $(' #portfolio_grid > figure ').each( function() { $(this).hoverdir(); } );
-
-        // Blog grid init
-        var $container = $(".blog-masonry");
-        $container.imagesLoaded(function () {
-            $container.masonry();
-        });
 
         // Mobile menu
         $('.menu-toggle').on("click", function () {
@@ -183,33 +242,6 @@ ml.timelines["ml5"] = anime.timeline({loop: false})
         $('.sidebar-toggle').on("click", function () {
             $('#blog-sidebar').toggleClass('open');
         });
-
-        // Testimonials Slider
-        $(".testimonials.owl-carousel").owlCarousel({
-            nav: true, // Show next/prev buttons.
-            items: 3, // The number of items you want to see on the screen.
-            loop: false, // Infinity loop. Duplicate last and first items to get loop illusion.
-            navText: false,
-            margin: 25,
-            responsive : {
-                // breakpoint from 0 up
-                0 : {
-                    items: 1,
-                },
-                // breakpoint from 480 up
-                480 : {
-                    items: 1,
-                },
-                // breakpoint from 768 up
-                768 : {
-                    items: 2,
-                },
-                1200 : {
-                    items: 2,
-                }
-            }
-        });
-
 
         // Text rotation
         $('.text-rotation').owlCarousel({
@@ -291,23 +323,20 @@ ml.timelines["ml5"] = anime.timeline({loop: false})
         });
 
         //Form Controls
-        $('.form-control')
-            .val('')
-            .on("focusin", function(){
-                $(this).parent('.form-group').addClass('form-group-focus');
-            })
-            .on("focusout", function(){
-                if($(this).val().length === 0) {
-                    $(this).parent('.form-group').removeClass('form-group-focus');
-                }
-            });
+        // $('.form-control')
+        //     .val('')
+        //     .on("focusin", function(){
+        //         $(this).parent('.form-group').addClass('form-group-focus');
+        //     })
+        //     .on("focusout", function(){
+        //         if($(this).val().length === 0) {
+        //             $(this).parent('.form-group').removeClass('form-group-focus');
+        //         }
+        //     });
 
-        //Google Maps
-        $("#map").googleMap();
-        $("#map").addMarker({
-            address: "15 avenue des champs Elysées 75008 Paris" // Your Address
-        });
     })
     .on("DOMSubtreeModified", subpages_resize);
 
 })(jQuery);
+
+
