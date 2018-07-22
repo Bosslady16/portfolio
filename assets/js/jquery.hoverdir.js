@@ -8,6 +8,14 @@
  * Copyright 2012, Codrops
  * http://www.codrops.com
  */
+$(function(){ // this replaces document.ready
+  setTimeout(function(){
+    $('#preloader').fadeOut('slow', function() {
+      $(this).remove();
+    });
+   }, 1500);
+});
+ 
 ;( function( $, window, undefined ) {
 	
 	'use strict';
