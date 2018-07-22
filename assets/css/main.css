@@ -151,7 +151,7 @@ textarea.form-control, textarea.form-control:focus {
   left: 50%;
   right: 50%;
   bottom: 0;
-  background: #F2B79F;
+  background: transparent;
   height: 2px;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -1295,7 +1295,7 @@ input[type=checkbox]:checked + label {
     top: 50px;
     z-index: 1001;
     overflow: auto;
-    background-color: #F2B79F;
+    background-color: #912F40;
     -webkit-box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.2);
     -moz-box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.2);
     box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.2);
@@ -1330,7 +1330,7 @@ input[type=checkbox]:checked + label {
     left: 0;
     right: 0;
     height: 50px;
-    background-color: #F2B79F;
+    background-color: #912F40;
     -webkit-box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.1);
     -moz-box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.1);
     box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.1);
@@ -1345,7 +1345,7 @@ input[type=checkbox]:checked + label {
   .mobile-site-title {
     display: inline-block;
     float: left;
-    color: #351010;
+    color: #FFFFFA;
     font-size: 25px;
     font-weight: 400;
     font-family: 'Qwigley', cursive;
